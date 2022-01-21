@@ -4,9 +4,18 @@ img{
 
     height: 150px;
     margin-bottom: 10px;
+    
 }
 
-#game-board{
+.test {
+    background-color: green !important;
+    width: 150px;
 
-    height: 100vh;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+#tester {
+
+    opacity: 0;
 }

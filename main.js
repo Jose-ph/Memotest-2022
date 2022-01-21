@@ -43,14 +43,16 @@ function setGameBoard(){ //board,characters
     //Quiero hacer 4 filas de 4 columnas. 
     //Como uso bootstrap quiero respetar el div class row.
    let duplicatedCharacters =  characters.concat(characters);
+
+    shuffle(duplicatedCharacters);
+   
    const $rowNumberOne = document.querySelector("#row-1");
     const $rowNumberTwo = document.querySelector("#row-2");
     const $rowNumberThree = document.querySelector("#row-3");
     const $rowNumberFour = document.querySelector("#row-4");
 
 
-   console.log(duplicatedCharacters);
- 
+   
     
    for(let i = 0 ; i < 4 ; i++){
 
@@ -60,6 +62,7 @@ function setGameBoard(){ //board,characters
 
        let newColumn = document.createElement("div")
        newColumn.setAttribute("class","col")
+       newColumn.classList.add("back");
 
        let newCharacterImage = document.createElement("img");
        newCharacterImage.setAttribute("src", `${duplicatedCharacters[i].img}`)
@@ -80,6 +83,7 @@ function setGameBoard(){ //board,characters
 
      let newColumn = document.createElement("div")
      newColumn.setAttribute("class","col")
+     newColumn.classList.add("back");
 
      let newCharacterImage = document.createElement("img");
      newCharacterImage.setAttribute("src", `${duplicatedCharacters[i].img}`)
@@ -100,6 +104,7 @@ function setGameBoard(){ //board,characters
 
      let newColumn = document.createElement("div")
      newColumn.setAttribute("class","col")
+     newColumn.classList.add("back");
 
      let newCharacterImage = document.createElement("img");
      newCharacterImage.setAttribute("src", `${duplicatedCharacters[i].img}`)
@@ -118,8 +123,9 @@ function setGameBoard(){ //board,characters
 
     /*  newRow.setAttribute("class", "row") */
 
-     let newColumn = document.createElement("div")
-     newColumn.setAttribute("class","col")
+     let newColumn = document.createElement("div");
+     newColumn.setAttribute("class","col");
+     newColumn.classList.add("back");
 
      let newCharacterImage = document.createElement("img");
      newCharacterImage.setAttribute("src", `${duplicatedCharacters[i].img}`)
@@ -139,17 +145,30 @@ function setGameBoard(){ //board,characters
 }
 
 setGameBoard()
+
+
+//Shuffle array test (from stack overflow)
+
+function shuffle(array) {
 /* 
-let testDiv = document.createElement("img");
-//testDiv.setAttribute("src", characters.king);
+    let currentIndex = array.length,  randomIndex; */
+    let currentIndex = array.length;
+    let randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+ 
 
-testDiv.setAttribute("src", "img/img-01.webp");
-
-
-document.querySelector("body").appendChild(testDiv);
-
-Object.keys(characters).forEach(key => {
-
-    console.log(characters[key]);
-    
-}); */
+ 
