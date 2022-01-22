@@ -8,7 +8,10 @@ img{
 }
 
 .card {
-    background-image: url("graphics/cardback.gif");
+    /* background-image: url("graphics/cardback.gif"); */
+    background-image:url(img/img-09.jpeg) ;
+    background-repeat: no-repeat;
+    background-position: center;
     background-color: goldenrod;
     border-color: #808080 #000000 #000000 #808080;
     border-width: 1px;
@@ -16,12 +19,18 @@ img{
     color: #000000;
     font-size: 20pt;
     position: relative;
-     width:  3.75em;
-    height: 5.00em; 
+     width:  150px;
+    height: 150px; 
     
   }
   .front {
-    background-color: #ffffff;
+
+    background-image:url(img/img-01.jpg) ;
+    background-color: goldenrod;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+    
     color: #000000;
     position: relative;
     width: 100%;

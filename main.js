@@ -14,14 +14,14 @@
 
 const characters = [
 
-    {"img": "img/img-01.webp"},
+    {"img": "img/img-01.jpg"},
     {"img": "img/img-06.jpg"},
-    {"img": "img/img-03.jpeg"},
-    {"img": "img/img-04.jpeg"},
-    {"img": "img/img-02.webp"},
-    {"img": "img/img-05.jpeg"},
-    {"img": "img/img-08.JPG"},
-    {"img": "img/img-07.jpeg"},
+    {"img": "img/img-03.jpg"},
+    {"img": "img/img-04.jpg"},
+    {"img": "img/img-02.jpg"},
+    {"img": "img/img-05.jpg"},
+    {"img": "img/img-08.jpg"},
+    {"img": "img/img-07.jpg"},
 
 ]
 
@@ -144,7 +144,7 @@ function setGameBoard(){ //board,characters
 
 }
 
-setGameBoard()
+
 
 
 //Shuffle array test (from stack overflow)
@@ -181,10 +181,20 @@ function shuffle(array) {
 
     if($frontCard.classList.contains("none")){
 
-        $frontCard.classList.remove("none")
+       
+            $frontCard.classList.remove("none")
+            
+       
+       
 
     }
 
-    else $frontCard.classList.add("none");
+    else {
+
+        
+            $frontCard.classList.add("none");
     console.log("click")
+       
+
+    }
   }
