@@ -172,3 +172,19 @@ function shuffle(array) {
  
 
  
+
+  const $cardBack = document.querySelector(".card");
+
+  $cardBack.onclick = ()=>{
+
+    const $frontCard = document.querySelector(".front")
+
+    if($frontCard.classList.contains("none")){
+
+        $frontCard.classList.remove("none")
+
+    }
+
+    else $frontCard.classList.add("none");
+    console.log("click")
+  }
