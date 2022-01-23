@@ -171,7 +171,7 @@ function shuffle(array) {
   }
  
 
- 
+ // flip card test
 
   const $cardBack = document.querySelector(".card");
 

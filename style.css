@@ -19,9 +19,10 @@ img{
     color: #000000;
     font-size: 20pt;
     position: relative;
-     width:  150px;
-    height: 150px; 
-    
+     width:  10em;
+    height: 5em;
+    margin-left: 5px;
+    margin-bottom: 6px;
   }
   .front {
 
@@ -40,4 +41,10 @@ img{
 
   .none {
       display: none;
+  }
+
+  #win-img{
+
+      height: 30em;
+      width: 100em;
   }
