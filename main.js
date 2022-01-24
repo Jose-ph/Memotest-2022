@@ -9,6 +9,10 @@
     {"atomic-samurai": "img/img-08.JPG"},
     {"watchdog-man": "img/img-07.jpeg"},
 
+    Esto tendría que haber sido
+
+    {name: "king",
+      img: "aca la ruta"} etc
 ]
  */
 
@@ -30,11 +34,7 @@ const $gameBoard = document.querySelector("#game-board");
 const $timer = document.querySelector("#timer");
 const $tries = document.querySelector("#tries");
 const $startButton = document.querySelector("#start-btn");
-/* const $rowNumberOne = document.querySelector("#row-1");
-const $rowNumberTwo = document.querySelector("#row-2");
-const $rowNumberThree = document.querySelector("#row-3");
-const $rowNumberFour = document.querySelector("#row-4");
- */
+
 
 
 
@@ -61,11 +61,12 @@ function setGameBoard(){ //board,characters
       /*  newRow.setAttribute("class", "row") */
 
       let newCardContainer = document.createElement("div");
-      newCardContainer.setAttribute("class","col")
+      newCardContainer.setAttribute("class","col");
       newCardContainer.classList.add("card");
 
        let newCardBack = document.createElement("div")
-       newCardBack.setAttribute("class","col")
+       newCardBack.setAttribute("class","col");
+       newCardBack.setAttribute("id", `${i}`);
        newCardBack.classList.add("card-back");
 
 
@@ -80,8 +81,6 @@ function setGameBoard(){ //board,characters
 
         newCardBack.appendChild(newCardFront);
 
-        console.log(newCardFront)
-        console.log(duplicatedCharacters[i])
         $rowNumberOne .appendChild(newCardBack);
         $gameBoard.appendChild($rowNumberOne);
 
@@ -98,6 +97,7 @@ function setGameBoard(){ //board,characters
 
      let newCardBack = document.createElement("div")
      newCardBack.setAttribute("class","col")
+     newCardBack.setAttribute("id", `${i}`);
      newCardBack.classList.add("card-back");
 
 
@@ -115,8 +115,7 @@ function setGameBoard(){ //board,characters
 
       newCardBack.appendChild(newCardFront);
 
-      console.log(newCardFront)
-      console.log(duplicatedCharacters[i])
+      
       $rowNumberTwo .appendChild(newCardBack);
       $gameBoard.appendChild($rowNumberTwo);
 
@@ -131,6 +130,7 @@ function setGameBoard(){ //board,characters
 
    let newCardBack = document.createElement("div")
    newCardBack.setAttribute("class","col")
+   newCardBack.setAttribute("id", `${i}`);
    newCardBack.classList.add("card-back");
 
 
@@ -148,8 +148,7 @@ function setGameBoard(){ //board,characters
 
     newCardBack.appendChild(newCardFront);
 
-    console.log(newCardFront)
-    console.log(duplicatedCharacters[i])
+   
     $rowNumberThree .appendChild(newCardBack);
     $gameBoard.appendChild($rowNumberThree);
 
@@ -166,6 +165,7 @@ function setGameBoard(){ //board,characters
 
    let newCardBack = document.createElement("div")
    newCardBack.setAttribute("class","col")
+   newCardBack.setAttribute("id", `${i}`);
    newCardBack.classList.add("card-back");
 
 
@@ -183,8 +183,7 @@ function setGameBoard(){ //board,characters
 
     newCardBack.appendChild(newCardFront);
 
-    console.log(newCardFront)
-    console.log(duplicatedCharacters[i])
+    
     $rowNumberFour .appendChild(newCardBack);
     $gameBoard.appendChild($rowNumberFour);
 
@@ -226,33 +225,116 @@ function shuffle(array) {
   }
  
 
- // flip card test
-function flipCards (){
 
-  const $cardsFronts = document.querySelectorAll(".front");
+
+function handleRound(){
+
   const $cardsBacks = document.querySelectorAll(".card-back");
+  let userCards = [];
 
 
-  $cardsBacks.forEach(cardBack => {
+  $cardsBacks .forEach(cardBack => {
 
-    cardBack.onclick = () => {
 
-      let cardChildren = cardBack.children;
-     /*  console.log(cardChildren[0].classList.contains("none")); */
+    cardBack.onclick = function (event){
 
-      if(cardChildren[0].classList.contains("none")){
+        let  pickedCard = event.target;
 
-        cardChildren[0].classList.remove("none");
+        flipCard(pickedCard,cardBack);
+
+        if(pickedCard.classList.contains("front")){
+
+          pickedCard = event.target.parentElement;
       }
 
-      else{cardChildren[0].classList.add("none")};
 
+        userCards.push(pickedCard);
+
+
+
+        console.log(userCards);
+       
+
+
+
+
+        
+        /* 
+        flipCard(pickedCard,cardBack);
+
+
+        if(pickedCard.classList.contains("front")){
+
+            pickedCard = event.target.parentElement;
+        } */
+
+        
     }
     
   });
- 
+
+
+
+}
+
+function handlePickedCards(pickedCards){
+
+
+
+
+
 }
 
 
+
+
+function flipCard (pickedCard,cardBack){
+
+  /* 
+  let cardChildren = pickedCard.children; */
+
+ console.log(pickedCard);
+ 
+  if(pickedCard.classList.contains("card-back")){
+
+    let cardChildren = pickedCard.children;
+
+    if(cardChildren[0].classList.contains("none")){
+
+      cardChildren[0].classList.remove("none");
+      //cardChildren[0].classList.add("picked");
+      cardBack.classList.add("picked");
+
+
+
+  }
+
+
+  
+
+ 
+  
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 setGameBoard();
-flipCards();
+handleRound();
