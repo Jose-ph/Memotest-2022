@@ -60,85 +60,140 @@ function setGameBoard(){ //board,characters
 
       /*  newRow.setAttribute("class", "row") */
 
-       let newColumn = document.createElement("div")
-       newColumn.setAttribute("class","col")
-       newColumn.classList.add("back");
+      let newCardContainer = document.createElement("div");
+      newCardContainer.setAttribute("class","col")
+      newCardContainer.classList.add("card");
 
-       let newCharacterImage = document.createElement("img");
-       newCharacterImage.setAttribute("src", `${duplicatedCharacters[i].img}`)
-       newCharacterImage.setAttribute("alt", `one punch man character`)
+       let newCardBack = document.createElement("div")
+       newCardBack.setAttribute("class","col")
+       newCardBack.classList.add("card-back");
 
-        newColumn.appendChild(newCharacterImage)
 
-        $rowNumberOne .appendChild(newColumn);
+       let newCardFront= document.createElement("img");
+       newCardFront.setAttribute("src", `${duplicatedCharacters[i].img}`)
+       newCardFront.setAttribute("alt", `one punch man character`);
+       newCardFront.setAttribute("class", "front");
+       newCardFront.classList.add("none");
+       
+
+
+
+        newCardBack.appendChild(newCardFront);
+
+        console.log(newCardFront)
+        console.log(duplicatedCharacters[i])
+        $rowNumberOne .appendChild(newCardBack);
         $gameBoard.appendChild($rowNumberOne);
 
    }
 
-   for(let i = 4 ; i < 8; i++){
 
-    /*  let newRow = document.createElement("div"); */
 
-    /*  newRow.setAttribute("class", "row") */
+  for(let i = 4 ; i < 8; i++){
 
-     let newColumn = document.createElement("div")
-     newColumn.setAttribute("class","col")
-     newColumn.classList.add("back");
+    
+    let newCardContainer = document.createElement("div");
+    newCardContainer.setAttribute("class","col")
+    newCardContainer.classList.add("card");
 
-     let newCharacterImage = document.createElement("img");
-     newCharacterImage.setAttribute("src", `${duplicatedCharacters[i].img}`)
-     newCharacterImage.setAttribute("alt", `one punch man character`)
+     let newCardBack = document.createElement("div")
+     newCardBack.setAttribute("class","col")
+     newCardBack.classList.add("card-back");
 
-      newColumn.appendChild(newCharacterImage)
 
-      $rowNumberTwo.appendChild(newColumn);
+     let newCardFront= document.createElement("img");
+     newCardFront.setAttribute("src", `${duplicatedCharacters[i].img}`)
+     newCardFront.setAttribute("alt", `one punch man character`);
+     newCardFront.setAttribute("class", "front");
+     newCardFront.classList.add("none");
+     
+
+
+     
+  
+  
+
+      newCardBack.appendChild(newCardFront);
+
+      console.log(newCardFront)
+      console.log(duplicatedCharacters[i])
+      $rowNumberTwo .appendChild(newCardBack);
       $gameBoard.appendChild($rowNumberTwo);
 
  }
 
  for(let i = 8; i < 12; i++){
 
-    /*  let newRow = document.createElement("div"); */
 
-    /*  newRow.setAttribute("class", "row") */
+  let newCardContainer = document.createElement("div");
+  newCardContainer.setAttribute("class","col")
+  newCardContainer.classList.add("card");
 
-     let newColumn = document.createElement("div")
-     newColumn.setAttribute("class","col")
-     newColumn.classList.add("back");
+   let newCardBack = document.createElement("div")
+   newCardBack.setAttribute("class","col")
+   newCardBack.classList.add("card-back");
 
-     let newCharacterImage = document.createElement("img");
-     newCharacterImage.setAttribute("src", `${duplicatedCharacters[i].img}`)
-     newCharacterImage.setAttribute("alt", `one punch man character`)
 
-      newColumn.appendChild(newCharacterImage)
+   let newCardFront= document.createElement("img");
+   newCardFront.setAttribute("src", `${duplicatedCharacters[i].img}`)
+   newCardFront.setAttribute("alt", `one punch man character`);
+   newCardFront.setAttribute("class", "front");
+   newCardFront.classList.add("none");
+   
 
-      $rowNumberThree.appendChild(newColumn);
-      $gameBoard.appendChild($rowNumberThree);
+
+   
+
+
+
+    newCardBack.appendChild(newCardFront);
+
+    console.log(newCardFront)
+    console.log(duplicatedCharacters[i])
+    $rowNumberThree .appendChild(newCardBack);
+    $gameBoard.appendChild($rowNumberThree);
+
+   
 
  }
 
  for(let i = 12; i < 16; i++){
 
-    /*  let newRow = document.createElement("div"); */
 
-    /*  newRow.setAttribute("class", "row") */
+  let newCardContainer = document.createElement("div");
+  newCardContainer.setAttribute("class","col")
+  newCardContainer.classList.add("card");
 
-     let newColumn = document.createElement("div");
-     newColumn.setAttribute("class","col");
-     newColumn.classList.add("back");
+   let newCardBack = document.createElement("div")
+   newCardBack.setAttribute("class","col")
+   newCardBack.classList.add("card-back");
 
-     let newCharacterImage = document.createElement("img");
-     newCharacterImage.setAttribute("src", `${duplicatedCharacters[i].img}`)
-     newCharacterImage.setAttribute("alt", `one punch man character`)
 
-      newColumn.appendChild(newCharacterImage)
+   let newCardFront= document.createElement("img");
+   newCardFront.setAttribute("src", `${duplicatedCharacters[i].img}`)
+   newCardFront.setAttribute("alt", `one punch man character`);
+   newCardFront.setAttribute("class", "front");
+   newCardFront.classList.add("none");
+   
 
-      $rowNumberFour.appendChild(newColumn);
-      $gameBoard.appendChild($rowNumberFour);
+
+   
+
+
+
+    newCardBack.appendChild(newCardFront);
+
+    console.log(newCardFront)
+    console.log(duplicatedCharacters[i])
+    $rowNumberFour .appendChild(newCardBack);
+    $gameBoard.appendChild($rowNumberFour);
+
+  
 
  }
 
 
+   
 
 
 
@@ -172,29 +227,32 @@ function shuffle(array) {
  
 
  // flip card test
+function flipCards (){
 
-  const $cardBack = document.querySelector(".card");
+  const $cardsFronts = document.querySelectorAll(".front");
+  const $cardsBacks = document.querySelectorAll(".card-back");
 
-  $cardBack.onclick = ()=>{
 
-    const $frontCard = document.querySelector(".front")
+  $cardsBacks.forEach(cardBack => {
 
-    if($frontCard.classList.contains("none")){
+    cardBack.onclick = () => {
 
-       
-            $frontCard.classList.remove("none")
-            
-       
-       
+      let cardChildren = cardBack.children;
+     /*  console.log(cardChildren[0].classList.contains("none")); */
 
-    }
+      if(cardChildren[0].classList.contains("none")){
 
-    else {
+        cardChildren[0].classList.remove("none");
+      }
 
-        
-            $frontCard.classList.add("none");
-    console.log("click")
-       
+      else{cardChildren[0].classList.add("none")};
 
     }
-  }
+    
+  });
+ 
+}
+
+
+setGameBoard();
+flipCards();
