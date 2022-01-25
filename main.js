@@ -1,20 +1,3 @@
-/* const characters = [
-
-    {"king": "img/img-01.webp"},
-    {"saitama": "img/img-06.jpeg"},
-    {"bang": "img/img-03.jpeg"},
-    {"garou": "img/img-04.jpeg"},
-    {"kid-emperor": "img/img-02.webp"},
-    {"genos": "img/img-05.jpeg"},
-    {"atomic-samurai": "img/img-08.JPG"},
-    {"watchdog-man": "img/img-07.jpeg"},
-
-    Esto tendría que haber sido
-
-    {name: "king",
-      img: "aca la ruta"} etc
-]
- */
 
 const characters = [
 
@@ -253,7 +236,20 @@ function handleRound(){
 
 
         console.log(userCards);
+
+        if(userCards.length === 2){
+
+          blockGameBoard();
+
+          checkMatch(userCards);
+          userCards = [];
+          handleRound();
+
+          //ocultadCartas
+        }
        
+  
+          //userCards = [];
 
 
 
@@ -277,14 +273,42 @@ function handleRound(){
 
 }
 
-function handlePickedCards(pickedCards){
+
+function checkMatch(userCards){
+
+  let match = false;
+
+  if(userCards[0].id === userCards[1].id){
+
+    alert("Esta es la misma carta es un try++")
+    match = false;
+  }
+
+  if(userCards[0].id !== userCards[1].id){
+
+    if(userCards[0].children[0].src === userCards[1].children[0].src){
+
+      alert("Esto es un acierto!")
+      match = true;
+    }
+
+    else {
+      
+      alert("no coinciden try++")
+      
+      match = false;
+    
+  }
 
 
 
+  }
+
+
+  return match;
 
 
 }
-
 
 
 
@@ -321,7 +345,23 @@ function flipCard (pickedCard,cardBack){
 
 
 
+function blockGameBoard (){
 
+  const $cardsBacks = document.querySelectorAll(".card-back");
+
+
+  $cardsBacks.forEach(cardBack => {
+
+
+    cardBack.onclick = ()=>{
+
+      console.log("bloqueado");
+    }
+    
+  });
+
+
+}
 
 
 
