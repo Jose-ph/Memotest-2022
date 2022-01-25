@@ -18,6 +18,9 @@ const $timer = document.querySelector("#timer");
 const $tries = document.querySelector("#tries");
 const $startButton = document.querySelector("#start-btn");
 
+let matchedCards = 0;
+let testWonCards = [];
+
 
 
 
@@ -212,8 +215,11 @@ function shuffle(array) {
 
 function handleRound(){
 
+
+
   const $cardsBacks = document.querySelectorAll(".card-back");
   let userCards = [];
+  
 
 
   $cardsBacks .forEach(cardBack => {
@@ -221,49 +227,70 @@ function handleRound(){
 
     cardBack.onclick = function (event){
 
+      
+      
+
         let  pickedCard = event.target;
 
-        flipCard(pickedCard,cardBack);
-
-        if(pickedCard.classList.contains("front")){
-
-          pickedCard = event.target.parentElement;
-      }
+        if(!pickedCard.classList.contains("won")){
 
 
-        userCards.push(pickedCard);
+          flipCard(pickedCard,cardBack);
 
-
-
-        console.log(userCards);
-
-        if(userCards.length === 2){
-
-          blockGameBoard();
-
-          checkMatch(userCards);
-          userCards = [];
-          handleRound();
-
-          //ocultadCartas
-        }
-       
+          if(pickedCard.classList.contains("front")){
   
-          //userCards = [];
-
-
-
-
-        
-        /* 
-        flipCard(pickedCard,cardBack);
-
-
-        if(pickedCard.classList.contains("front")){
-
             pickedCard = event.target.parentElement;
-        } */
+        }
+  
+  
+          userCards.push(pickedCard);
+  
+  
+  
+          console.log(userCards);
+  
+          if(userCards.length === 2){
+  
+            blockGameBoard();
+  
+            let isMatch = checkMatch(userCards);
+  
+            if(isMatch){
+  
+              matchedCards++;
 
+              handleMatchedCards(userCards);
+             
+              
+  
+            }
+
+            if(!isMatch){
+
+              unflipCards(userCards);
+
+            }
+  
+           
+            userCards = [];
+            console.log(matchedCards);
+            
+            
+            handleRound();
+  
+            //ocultadCartas
+          }
+         
+    
+
+
+
+        }
+
+
+        else {console.log("bloqueado")}
+
+       
         
     }
     
@@ -272,6 +299,41 @@ function handleRound(){
 
 
 }
+
+
+function unflipCards (userCards){
+userCards.forEach(userCard => {
+
+
+  userCard.children[0].classList.add("none");
+  
+});
+
+
+
+
+}
+
+
+function handleMatchedCards(userCards){
+
+
+  userCards.forEach(userCard => {
+
+    userCard.classList.add("won");
+    //console.log(userCard.children);
+    userCard.children[0].classList.add("none")
+   
+    
+  });
+
+
+
+
+}
+
+
+
 
 
 function checkMatch(userCards){
