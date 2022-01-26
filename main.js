@@ -27,6 +27,7 @@ let stopTimerId = [];
 let matchedCards = 0;
 let tries = 0;
 let testWonCards = [];
+
 $tries.innerHTML = `<p> Intentos: ${tries} </p>`
 
 $timer.innerHTML = `<p> Tiempo de juego: </p>`
@@ -36,9 +37,8 @@ $timer.innerHTML = `<p> Tiempo de juego: </p>`
 $startButton.onclick = function (){   
 
 
-  console.log(handleTimer($timer)); 
-
-
+  
+   handleTimer($timer)
   matchedCards = 0;
   tries = 0;
   $tries.innerHTML = `<p> Intentos: ${tries} </p>`
@@ -50,7 +50,7 @@ $startButton.onclick = function (){
       removeCards();
 
         
-      //$startButton.classList.add("disabled");
+      $startButton.classList.add("disabled");
       const $welcomeState = document.querySelector("#welcome-state");
 
       $welcomeState.classList.add("d-none");
@@ -226,7 +226,7 @@ function setGameBoard(){
 
 
 
-//Shuffle array test (from stack overflow)
+//Shuffle array  (from stack overflow)
 
 function shuffle(array) {
 
@@ -293,45 +293,59 @@ function handleRound(){
   
   
           userCards.push(pickedCard);
+
+          
   
 
-          if(userCards.length === 2){
-  
+          if(userCards.length === 2 ){
+            
+            let sameCard = userCards[0].id === userCards[1].id
            
-             blockGameBoard();
+            console.log( "es la misma carta:",sameCard);
+
+             if(!sameCard){
+              blockGameBoard();
 
            
   
-            let isMatch = checkMatch(userCards);
+              let isMatch = checkMatch(userCards);
+    
+              if(isMatch){
+    
+                matchedCards++;
   
-            if(isMatch){
+                handleMatchedCards(userCards);
+               
+                
+    
+              }
   
-              matchedCards++;
-
-              handleMatchedCards(userCards);
+              if(!isMatch){
+  
+                unflipCards(userCards);
+                tries++;
+  
+                console.log("tries", tries);
+                $tries.innerHTML = `<p> Intentos: ${tries} </p>`
+  
+              }
+    
              
+              userCards = [];
               
-  
-            }
+              
+              setTimeout(() => {
+                handleRound();
+              }, 1000);
 
-            if(!isMatch){
 
-              unflipCards(userCards);
-              tries++;
-
-              console.log("tries", tries);
-              $tries.innerHTML = `<p> Intentos: ${tries} </p>`
-
-            }
-  
-           
-            userCards = [];
+             }
             
-            
-            setTimeout(() => {
-              handleRound();
-            }, 1000);
-            /* handleRound(); */
+            if(sameCard){
+              
+              userCards.pop();
+              
+            }
   
             
           }
@@ -341,12 +355,13 @@ function handleRound(){
 
            
 
-            $gameBoard.classList.add("none");
+          
 
             clearInterval(stopTimerId[0]);
 
 
             setTimeout(() => {
+              $gameBoard.classList.add("none");
               
               document.querySelector("#win-img").classList.remove("none");
               tries = 0;
@@ -438,19 +453,7 @@ function checkMatch(userCards){
  
   let match = false;
 
-  const $cardsBacks = document.querySelectorAll(".card-back");
-
-
-  $cardsBacks.forEach(cardBack => {
-
-
-    cardBack.onclick = ()=>{
-
-      console.log("bloqueado");
-    }
-    
-  });
-  
+ 
 
   if(userCards[0].id === userCards[1].id){
 
@@ -462,13 +465,13 @@ function checkMatch(userCards){
 
     if(userCards[0].children[0].src === userCards[1].children[0].src){
 
-      //alert("Esto es un acierto!")
+     
       match = true;
     }
 
     else {
       
-     // alert("No coinciden")
+     
       
       match = false;
     
@@ -536,7 +539,7 @@ function handleTimer(timer){
   let idInterval= setInterval(() => {
       seconds++
       timer.innerText = `Tiempo de juego: ${seconds} segundos `
-      console.log(seconds)
+      
   }, 1000);
 
   stopTimerId.push(idInterval);
