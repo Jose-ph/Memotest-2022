@@ -53,7 +53,7 @@ $startButton.onclick = function (){
       //$startButton.classList.add("disabled");
       const $welcomeState = document.querySelector("#welcome-state");
 
-      $welcomeState.classList.add("none");
+      $welcomeState.classList.add("d-none");
 
       setGameBoard();
 
@@ -65,7 +65,7 @@ $startButton.onclick = function (){
 
 
 
-function setGameBoard(){ //board,characters
+function setGameBoard(){ 
 
     //Quiero hacer 4 filas de 4 columnas. 
     //Como uso bootstrap quiero respetar el div class row.
@@ -83,9 +83,7 @@ function setGameBoard(){ //board,characters
     
    for(let i = 0 ; i < 4 ; i++){
 
-      /*  let newRow = document.createElement("div"); */
-
-      /*  newRow.setAttribute("class", "row") */
+     
 
       let newCardContainer = document.createElement("div");
       newCardContainer.setAttribute("class","col");
@@ -231,8 +229,7 @@ function setGameBoard(){ //board,characters
 //Shuffle array test (from stack overflow)
 
 function shuffle(array) {
-/* 
-    let currentIndex = array.length,  randomIndex; */
+
     let currentIndex = array.length;
     let randomIndex;
   
@@ -269,6 +266,7 @@ function handleRound(){
 
 
   const $cardsBacks = document.querySelectorAll(".card-back");
+  
   let userCards = [];
   
 
@@ -299,7 +297,10 @@ function handleRound(){
 
           if(userCards.length === 2){
   
-            blockGameBoard();
+           
+             blockGameBoard();
+
+           
   
             let isMatch = checkMatch(userCards);
   
@@ -325,19 +326,20 @@ function handleRound(){
   
            
             userCards = [];
-            console.log(matchedCards);
             
             
-            handleRound();
+            setTimeout(() => {
+              handleRound();
+            }, 1000);
+            /* handleRound(); */
   
-            //ocultadCartas
+            
           }
          
 
           if(matchedCards === characters.length){
 
-            alert("FIN DEL JUEGO");
-            //ocultar Tablero
+           
 
             $gameBoard.classList.add("none");
 
@@ -356,11 +358,10 @@ function handleRound(){
 
              
 
-            }, 500);
+            }, 1000);
 
             
-            //mostrar imagen de ganar
-            //volver temporizador e intentos a cero
+           
           }
     
 
@@ -383,10 +384,16 @@ function handleRound(){
 
 
 function unflipCards (userCards){
+
 userCards.forEach(userCard => {
 
+  setTimeout(() => {
 
-  userCard.children[0].classList.add("none");
+    userCard.children[0].classList.add("none");
+    
+  }, 800);
+
+  /* userCard.children[0].classList.add("none"); */
   
 });
 
@@ -401,10 +408,19 @@ function handleMatchedCards(userCards){
 
   userCards.forEach(userCard => {
 
-    userCard.classList.add("won");
+    setTimeout(() => {
+
+      userCard.classList.add("won");
+      //console.log(userCard.children);
+      userCard.children[0].classList.add("none")
+     
+      
+    }, 800);
+
+  /*   userCard.classList.add("won");
     //console.log(userCard.children);
     userCard.children[0].classList.add("none")
-   
+    */
     
   });
 
@@ -419,11 +435,26 @@ function handleMatchedCards(userCards){
 
 function checkMatch(userCards){
 
+ 
   let match = false;
+
+  const $cardsBacks = document.querySelectorAll(".card-back");
+
+
+  $cardsBacks.forEach(cardBack => {
+
+
+    cardBack.onclick = ()=>{
+
+      console.log("bloqueado");
+    }
+    
+  });
+  
 
   if(userCards[0].id === userCards[1].id){
 
-    alert("Esta es la misma carta es un try++")
+    //alert("Esta es la misma carta")
     match = false;
   }
 
@@ -431,13 +462,13 @@ function checkMatch(userCards){
 
     if(userCards[0].children[0].src === userCards[1].children[0].src){
 
-      alert("Esto es un acierto!")
+      //alert("Esto es un acierto!")
       match = true;
     }
 
     else {
       
-      alert("no coinciden try++")
+     // alert("No coinciden")
       
       match = false;
     
