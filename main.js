@@ -13,13 +13,54 @@ const characters = [
 ]
 
 
-const $gameBoard = document.querySelector("#game-board");
+ 
+
+
+ const $gameBoard = document.querySelector("#game-board");
 const $timer = document.querySelector("#timer");
 const $tries = document.querySelector("#tries");
 const $startButton = document.querySelector("#start-btn");
 
+
+
+let stopTimerId = [];
 let matchedCards = 0;
+let tries = 0;
 let testWonCards = [];
+$tries.innerHTML = `<p> Intentos: ${tries} </p>`
+
+$timer.innerHTML = `<p> Tiempo de juego: </p>`
+ 
+
+
+$startButton.onclick = function (){   
+
+
+  console.log(handleTimer($timer)); 
+
+
+  matchedCards = 0;
+  tries = 0;
+  $tries.innerHTML = `<p> Intentos: ${tries} </p>`
+     
+  document.querySelector("#win-img").classList.add("none");
+
+  $gameBoard.classList.remove("none");
+
+      removeCards();
+
+        
+      //$startButton.classList.add("disabled");
+      const $welcomeState = document.querySelector("#welcome-state");
+
+      $welcomeState.classList.add("none");
+
+      setGameBoard();
+
+       handleRound();
+
+    
+}
 
 
 
@@ -211,6 +252,16 @@ function shuffle(array) {
   }
  
 
+function removeCards(){
+
+  const $cardsBacks = document.querySelectorAll(".card-back");
+
+  $cardsBacks.forEach(cardBack => {
+
+    cardBack.remove();
+    
+  });
+}
 
 
 function handleRound(){
@@ -245,10 +296,7 @@ function handleRound(){
   
           userCards.push(pickedCard);
   
-  
-  
-          console.log(userCards);
-  
+
           if(userCards.length === 2){
   
             blockGameBoard();
@@ -268,6 +316,10 @@ function handleRound(){
             if(!isMatch){
 
               unflipCards(userCards);
+              tries++;
+
+              console.log("tries", tries);
+              $tries.innerHTML = `<p> Intentos: ${tries} </p>`
 
             }
   
@@ -281,6 +333,35 @@ function handleRound(){
             //ocultadCartas
           }
          
+
+          if(matchedCards === characters.length){
+
+            alert("FIN DEL JUEGO");
+            //ocultar Tablero
+
+            $gameBoard.classList.add("none");
+
+            clearInterval(stopTimerId[0]);
+
+
+            setTimeout(() => {
+              
+              document.querySelector("#win-img").classList.remove("none");
+              tries = 0;
+              $startButton.classList.remove("disabled");
+              
+
+
+              
+
+             
+
+            }, 500);
+
+            
+            //mostrar imagen de ganar
+            //volver temporizador e intentos a cero
+          }
     
 
 
@@ -376,9 +457,6 @@ function checkMatch(userCards){
 
 function flipCard (pickedCard,cardBack){
 
-  /* 
-  let cardChildren = pickedCard.children; */
-
  console.log(pickedCard);
  
   if(pickedCard.classList.contains("card-back")){
@@ -391,15 +469,8 @@ function flipCard (pickedCard,cardBack){
       //cardChildren[0].classList.add("picked");
       cardBack.classList.add("picked");
 
-
-
   }
 
-
-  
-
- 
-  
 }
 
 
@@ -425,18 +496,22 @@ function blockGameBoard (){
 
 }
 
+function handleTimer(timer){
+
+  
+  let seconds = 0;
+
+
+  let idInterval= setInterval(() => {
+      seconds++
+      timer.innerText = `Tiempo de juego: ${seconds} segundos `
+      console.log(seconds)
+  }, 1000);
+
+  stopTimerId.push(idInterval);
+}
 
 
 
 
 
-
-
-
-
-
-
-
-
-setGameBoard();
-handleRound();
