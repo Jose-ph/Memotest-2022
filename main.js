@@ -214,7 +214,7 @@ function handleRound() {
               unflipCards(userCards);
               tries++;
 
-              console.log("tries", tries);
+              
               $tries.innerHTML = `<p> Intentos: ${tries} </p>`;
             }
 
@@ -285,7 +285,7 @@ function checkMatch(userCards) {
 }
 
 function flipCard(pickedCard, cardBack) {
-  console.log(pickedCard);
+  
 
   if (pickedCard.classList.contains("card-back")) {
     let cardChildren = pickedCard.children;
