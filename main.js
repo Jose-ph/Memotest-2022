@@ -231,7 +231,10 @@ function handleRound() {
         }
 
         if (matchedCards === characters.length) {
-          clearInterval(stopTimerId[0]);
+
+          // crear funcion para detener todos los timers
+          //clearInterval(stopTimerId[0]);
+          stopTimers(stopTimerId);
 
           setTimeout(() => {
             $gameBoard.classList.add("none");
@@ -247,6 +250,20 @@ function handleRound() {
     };
   });
 }
+
+function stopTimers(timers){
+
+  timers.forEach(timer => {
+
+    clearInterval(timer)
+    
+  });
+
+
+
+}
+
+
 
 function unflipCards(userCards) {
   userCards.forEach((userCard) => {
@@ -314,7 +331,8 @@ function handleTimer(timer) {
   let idInterval = setInterval(() => {
     seconds++;
     timer.innerText = `Tiempo de juego: ${seconds} segundos `;
+    
   }, 1000);
-
+  console.log("Este es el id del tiempo",idInterval)
   stopTimerId.push(idInterval);
 }
