@@ -232,8 +232,7 @@ function handleRound() {
 
         if (matchedCards === characters.length) {
 
-          // crear funcion para detener todos los timers
-          //clearInterval(stopTimerId[0]);
+          
           stopTimers(stopTimerId);
 
           setTimeout(() => {
@@ -333,6 +332,6 @@ function handleTimer(timer) {
     timer.innerText = `Tiempo de juego: ${seconds} segundos `;
     
   }, 1000);
-  console.log("Este es el id del tiempo",idInterval)
+  
   stopTimerId.push(idInterval);
 }
