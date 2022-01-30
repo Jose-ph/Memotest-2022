@@ -4,7 +4,9 @@
   "description": "Juego de memotest para r/argentina-programa",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open":"cypress open"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,8 @@
   "homepage": "https://github.com/Jose-ph/memotest-2022#readme",
   "dependencies": {
     "bootstrap": "^5.1.3"
+  },
+  "devDependencies": {
+    "cypress": "^9.3.1"
   }
 }
