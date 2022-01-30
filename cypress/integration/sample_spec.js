@@ -3,12 +3,19 @@
 
   }); 
    describe('start the game', () => {
-    it('Visits the Kitchen sink', () => {
-      cy.visit('https://example.cypress.io')
+    it('checks if start button is disabled after starting the game', () => {
+      
+      //cy.contains('#start-btn')
+      /* cy.get('#start-btn').click().should('include','disabled') */
+      
+      cy.get('#start-btn').click();
 
-      cy.contains('type').click()
+      cy.get('#start-btn').should('have.class', 'disabled')
+      
+     // expect(cy.get('#start-btn')).to.be.disabled
+     
 
-      cy.url().should('include','/commands/actions')
+     // cy.url().should('include','/commands/actions')
     })
   })
 
