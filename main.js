@@ -335,3 +335,11 @@ function handleTimer(timer) {
   
   stopTimerId.push(idInterval);
 }
+
+
+
+
+
+
+
+
