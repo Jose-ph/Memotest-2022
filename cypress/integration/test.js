@@ -62,6 +62,16 @@
 
     })
 
+    it('checks if timers is running',()=>{
+
+      let timer = cy.get('#timer')
+
+      expect(timer).to.not.equal(0)
+
+
+
+    })
+
 
 
   })
