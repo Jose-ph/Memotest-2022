@@ -86,6 +86,8 @@
 
       const numberOfCards = 16
 
+      let sameCards, listOfPairs;
+
 
       it('checks gameBoard length',()=>{
         cy.get('#game-board').find('.card-back').should('have.length',numberOfCards)
@@ -152,6 +154,28 @@
        
        //TESTEAR UN MATCH
 
+       
+       it('resolves the game',()=>{
+
+        
+        cy.get('.card-back').then(cuadros => {
+          let mapaDePares = obtenerParesDeCuadros(cuadros);
+          let listaDePares = Object.values(mapaDePares);
+
+          console.log(mapaDePares)
+          console.log(listaDePares)
+
+          listaDePares.forEach((par) => {
+            cy.wait(1000).then(()=>{
+
+              cy.get(par[0]).click();
+            cy.get(par[1]).click();
+            })
+            
+          });
+       })
+
+      })
 
     })
   
@@ -162,10 +186,22 @@
 
 
 
-  function getCardPairs(){
+ // código de Fabri en memotest
+ function obtenerParesDeCuadros(cuadros) {
+  const pares = {};
 
+  cuadros.each((i, cuadro) => {
+    //notar que hay un espacio después de h-100
+    //amarillo
+    const claseColor = cuadro.children[0].src
 
+    if (pares[claseColor]) {
+      pares[claseColor].push(cuadro);
+    } else {
+      pares[claseColor] = [cuadro];
+    }
+  });
 
-
-
-  }
+  console.log(pares);
+  return pares;
+}

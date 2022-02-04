@@ -1,4 +1,4 @@
-const characters = [
+/* const characters = [
   { img: "img/img-01.jpg" },
   { img: "img/img-06.jpg" },
   { img: "img/img-03.jpg" },
@@ -8,6 +8,21 @@ const characters = [
   { img: "img/img-08.jpg" },
   { img: "img/img-07.jpg" },
 ];
+ */
+
+const characters = [
+  { img: 'img/img-01.jpg' },
+  { img: 'img/img-06.jpg' },
+  { img: 'img/img-03.jpg' },
+  { img: 'img/img-04.jpg' },
+  { img: 'img/img-02.jpg' },
+  { img: 'img/img-05.jpg' },
+  { img: 'img/img-08.jpg' },
+  { img: 'img/img-07.jpg' },
+];
+
+
+
 
 const $gameBoard = document.querySelector("#game-board");
 const $timer = document.querySelector("#timer");
