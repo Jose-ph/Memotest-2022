@@ -1,0 +1,77 @@
+img{
+
+    width: 150px;
+
+    height: 150px;
+    margin-bottom: 10px;
+    
+}
+
+.card {
+    /* background-image: url("graphics/cardback.gif"); */
+    background-image:url(img/img-09.jpeg) ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: goldenrod;
+    border-color: #808080 #000000 #000000 #808080;
+    border-width: 1px;
+    border-style: solid;
+    color: #000000;
+    font-size: 20pt;
+    position: relative;
+     width:  10em;
+    height: 5em;
+    margin-left: 5px;
+    margin-bottom: 6px;
+  }
+  .front {
+
+    /* background-image:url(img/img-01.jpg) ; */
+    background-color: goldenrod;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+    
+    color: #000000;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+  }
+
+  .none {
+      display: none;
+  }
+
+  #win-img{
+
+      height: 30em;
+      width: 100em;
+  }
+
+  .card-back {
+    /* background-image: url("graphics/cardback.gif"); */
+    background-image:url(img/img-09.jpeg) ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: goldenrod;
+    border-color: #808080 #000000 #000000 #808080;
+    border-width: 1px;
+    border-style: solid;
+    color: #000000;
+    font-size: 20pt;
+    position: relative;
+     width:  10em;
+    height: 5em;
+    margin-left: 5px;
+    margin-bottom: 6px;
+  }
+
+
+  .won {
+
+    background-image:url(img/Square_1.svg.png) !important;
+
+
+
+  }
